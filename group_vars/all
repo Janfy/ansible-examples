@@ -2,3 +2,5 @@
 # Variables listed here are applicable to all host groups
 
 ansible_cache_dir: /var/cache/ansible
+zabbix_server: 127.0.0.1
+hostname_cmd: hostname
