@@ -40,7 +40,7 @@
 
 - name: set ipa font 
   shell: |
-    sed -i "s/dejavu/pa-pgothic/" /usr/share/zabbix/include/defines.inc.php &&
+    sed -i "s/dejavu/ipa-pgothic/" /usr/share/zabbix/include/defines.inc.php &&
     sed -i "s/DejaVuSans/ipagp/" /usr/share/zabbix/include/defines.inc.php
   tags: zabbix-server
 
