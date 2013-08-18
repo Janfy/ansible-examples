@@ -1,22 +1,22 @@
 
 - name: install zabbix-agent
-  yum: name={{item}} enablerepo=epel state=installed
+  yum: name={{item}} state=installed
   with_items:
-    - zabbix20-agent
+    - zabbix-agent
   tags: zabbix-agent
 
 
 - name: set config server 
-  lineinfile: dest=/etc/zabbix_agentd.conf regexp="^Server=.*" insertafter="^# Server=" line=Server={{ zabbix_server }}
+  lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp="^Server=.*" insertafter="^# Server=" line=Server={{ zabbix_server }}
   notify: restart zabbix-agent
   tags: zabbix-agent
 
 - name: set config serveractive
-  lineinfile: dest=/etc/zabbix_agentd.conf regexp="^ServerActive=.*" insertafter="^# ServerActive=" line=ServerActive={{ zabbix_server }}
+  lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp="^ServerActive=.*" insertafter="^# ServerActive=" line=ServerActive={{ zabbix_server }}
   notify: restart zabbix-agent
   tags: zabbix-agent
 
 - name: set config serveractive
-  shell: sed -i "s/^Hostname=Zabbix server$/Hostname=`{{ hostname_cmd }}`/" /etc/zabbix_agentd.conf
+  shell: sed -i "s/^Hostname=Zabbix server$/Hostname=`{{ hostname_cmd }}`/" /etc/zabbix/zabbix_agentd.conf
   notify: restart zabbix-agent
   tags: zabbix-agent

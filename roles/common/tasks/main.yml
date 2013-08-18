@@ -10,3 +10,4 @@
 - include: ntp.yml
 - include: ca-bundle.crt.yml
 - include: etckeeper.yml
+- include: zabbix.yml
