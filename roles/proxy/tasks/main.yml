@@ -1,0 +1,22 @@
+
+- name: install zabbix-proxy
+  yum: name={{item}} state=installed
+  with_items:
+    - zabbix-proxy
+  tags: zabbix-proxy
+
+
+#- name: set config server 
+#  lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp="^Server=.*" insertafter="^# Server=" line=Server={{ zabbix_server }}
+#  notify: restart zabbix-proxy
+#  tags: zabbix-proxy
+#
+#- name: set config serveractive
+#  lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp="^ServerActive=.*" insertafter="^# ServerActive=" line=ServerActive={{ zabbix_server }}
+#  notify: restart zabbix-proxy
+#  tags: zabbix-proxy
+#
+#- name: set config serveractive
+#  shell: sed -i "s/^Hostname=Zabbix server$/Hostname=`{{ hostname_cmd }}`/" /etc/zabbix/zabbix_agentd.conf
+#  notify: restart zabbix-proxy
+#  tags: zabbix-proxy
