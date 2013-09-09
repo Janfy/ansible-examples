@@ -2,7 +2,7 @@
 # This playbook contains common plays that will be run on all nodes.
 
 - name: mkdir ansible cache
-  file: path={{ ansible_cache_dir }} state=directory owner=root group=root mode=0655
+  file: path={{ ansible_cache_dir }} state=directory owner=root group=root mode=0755
 
 - include: epel.yml
 - include: remi.yml
