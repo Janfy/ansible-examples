@@ -16,7 +16,7 @@
   notify: restart zabbix-agent
   tags: zabbix-agent
 
-- name: set config serveractive
-  shell: sed -i "s/^Hostname=Zabbix server$/Hostname=`{{ hostname_cmd }}`/" /etc/zabbix/zabbix_agentd.conf
+- name: set config Hostname
+  shell: sed -i "s/^Hostname=.*$/Hostname=`{{ hostname_cmd }}`/" /etc/zabbix/zabbix_agentd.conf
   notify: restart zabbix-agent
   tags: zabbix-agent
