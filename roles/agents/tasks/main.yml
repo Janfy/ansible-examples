@@ -18,5 +18,13 @@
 
 - name: set config Hostname
   shell: sed -i "s/^Hostname=.*$/Hostname=`{{ hostname_cmd }}`/" /etc/zabbix/zabbix_agentd.conf
+  tags: zabbix-agent
+  #notify: restart zabbix-agent
+
+# EnableRemoteCommands=0
+- name: set  EnableRemoteCommands
+  lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp="^EnableRemoteCommands=.*" insertafter="^# EnableRemoteCommands=" line=EnableRemoteCommands={{ zabbix_EnableRemoteCommands }}
+  when: zabbix_EnableRemoteCommands is defined
   notify: restart zabbix-agent
   tags: zabbix-agent
+
