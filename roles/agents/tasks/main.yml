@@ -21,6 +21,22 @@
   tags: zabbix-agent
   #notify: restart zabbix-agent
 
+- name: copy
+  copy: src=zapache dest=/usr/local/bin/zabbix_check_apache owner=root group=root mode=0755
+  when: zabbix_check_apache is defined
+  tags: zabbix-agent
+  notify: restart zabbix-agent
+
+- name: copy
+  lineinfile: 
+    dest=/etc/zabbix/zabbix_agentd.conf 
+    regexp="^UserParameter=.*"  
+    insertafter="^# UserParameter=" 
+    line="UserParameter=apache[*],/usr/local/bin/zabbix_check_apache \\$1"
+  when: zabbix_check_apache is defined
+  tags: zabbix-agent
+  notify: restart zabbix-agent
+
 # EnableRemoteCommands=0
 - name: set  EnableRemoteCommands
   lineinfile: dest=/etc/zabbix/zabbix_agentd.conf regexp="^EnableRemoteCommands=.*" insertafter="^# EnableRemoteCommands=" line=EnableRemoteCommands={{ zabbix_EnableRemoteCommands }}
