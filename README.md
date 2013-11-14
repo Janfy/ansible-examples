@@ -1,7 +1,7 @@
 Building a zabbix-server and zabbix-agent using Ansible Playbooks.
 ------------------------------------------------------------------
 
-These playbooks require Ansible 1.2.
+These playbooks require Ansible 1.3.1
 
 These playbooks are meant to be a reference and starter's guide to building
 Ansible Playbooks. These playbooks were tested on CentOS 5.x so we recommend
